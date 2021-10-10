@@ -6,13 +6,30 @@
 // prompt asks for user input
 // var is a variable that stores the user input (in the browser's memory)
 var playerName = window.prompt("What is your robot's name?");
+var playerHealth = 100;
+var playerAttack = 10;
+
 // this creates a function named "fight". the keyword "function" declares it.
-function fight(){
-window.alert("The fight has begun!");
-}
-console.log(playerName)
-console.log("This is a string, good for leaving yourself a message");
-console.log(10+10);
-console.log("our robot's name is " + playerName)
-// the function will not show until we call it
+console.log(playerName, playerAttack, playerHealth);
+
+var enemyName = "Roborto";
+var enemyHealth = 50;
+var enemyAttack = 12;
+
+console.log(enemyName, enemyAttack,enemyHealth)
+
+// fucntion expression -- creating a function by assigning it to a variable
+var fight = function() {
+    // alert players that they are starting the battle
+    window.alert("Welcome to Robot Gladiators!");
+// subtract the value of 'playerAttack' from the value of 'enemyAttack' and use that result to update the value in the 'enemyHealth' variable.
+enemyHealth = enemyHealth - playerAttack;
+// log resulting message to the console so we know that it worked.
+console.log(
+    playerName + " attacked " + enemyName + "." + enemyName + " now has " + enemyHealth + " health remaining. "
+);
+// subtract the value of 'enemyAttack' from the value of 'playerHealth' and use that that result to update the value in the 'playerHealth' variable.
+// log a resulting message to the console so we know that it worked. 
+};
+// the function will not show until we call it 
 fight();
