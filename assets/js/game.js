@@ -23,6 +23,7 @@ console.log(enemyName, enemyAttack,enemyHealth)
 var fight = function() {
     // alert players that they are starting the battle
     window.alert("Welcome to Robot Gladiators!");
+    // ask player if they'd like to fight or run
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
     console.log(promptFight);
 //if player chooses to fight, then fight
@@ -46,8 +47,8 @@ console.log(
     enemyName + " attacked " + playerName + ". " +playerName + " now has " + playerHealth + " health remaining."
 );
 
-//check play's health
-    if(enemyHealth <= 0){
+//check player's health
+    if(playerHealth <= 0){
     window.alert(playerName +" has died!")
     } else {
         window.alert(playerName + " still has " + playerHealth + " health left.");
@@ -66,11 +67,11 @@ console.log(
     else {
         fight();
     }
-    window.alert(playerName + " has chosen to skip the fight!");
+// if player did not choose 1 or 2 in prompt
 } else {
     window.alert("You need to choose a valid option. Try again!")
 }
-}
+};
 
 // the function will not show until we call it 
     fight();
