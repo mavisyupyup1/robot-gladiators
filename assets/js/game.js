@@ -13,7 +13,7 @@ var playerAttack = 10;
 console.log(playerName, playerAttack, playerHealth);
 
 var enemyName = "Roborto";
-var enemyHealth = 50;
+var enemyHealth = 10;
 var enemyAttack = 12;
 
 console.log(enemyName, enemyAttack,enemyHealth)
