@@ -41,6 +41,14 @@ playerHealth = playerHealth - enemyAttack;
 console.log(
     enemyName + " attacked " + playerName + ". " +playerName + " now has " + playerHealth + " health remaining."
 );
+
+//check play's health
+if(playerHealth <= 0) {
+    window.alert(playerName + " has died!");
+}
+else{
+    window.alert(playerName + " still has " + playerHealth + " health left.");
+}
 };
 // the function will not show until we call it 
 fight();
