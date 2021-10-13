@@ -1,5 +1,27 @@
-// window is refering to the browser. whenever JavaScript run in a browser, window will always be present.
-// a function is a prefined action we can call or invoke (after declare it earlier in the code). alert() is a function that tells the browser to display a message
+//pseudocode 
+//Game States
+//"WIN"- Player robot has defeated all enemy-robots
+//  * Fight all enemy-robots
+//  * Defeat each enemy - robot
+//"LOSE" - player robot's health is zero or less
+// if the enemy-robot's health is zero or less, exit from the fight loop. Translate to javaScript. if (enemyHealth <= 0){ break;}
+// wrap the game logic in a startGame()function
+//When the player is defeated or there are no more enemies call an endGame() function that
+  //alerts the player's total stats
+  //asks the plyer if they want to play again
+  // if yes, call startGame() to restart the game
+//After the player skips or defeats an enemy (and there are still more robots to fight):
+    //Ask the player if they want to "shop"
+    //If no, continue as normal.
+    //if yes, call the shop ()function
+    //in the shop() function, ask player if they want to "refill" health, "upgrade" attack or "leave" the shop
+    //if refill, subtract money points from the player and increase health.
+    //if upgrade, subtract money points from player and increase attack power
+    //if leave, alert goodbye and exit function
+    //if any other invalid option, call shop()agaiin.
+
+// window is referring to the browser. whenever JavaScript run in a browser, window will always be present.
+// a function is a predefined action we can call or invoke (after declare it earlier in the code). alert() is a function that tells the browser to display a message
 // placing content between the parentheses is called passing an argument into a function.
 // the semicolon closes out the functions code. each piece of code, separated by semicolon is known as an expression
 
@@ -8,28 +30,144 @@
 var playerName = window.prompt("What is your robot's name?");
 var playerHealth = 100;
 var playerAttack = 10;
+var playerMoney = 10;
 
 // this creates a function named "fight". the keyword "function" declares it.
-console.log(playerName, playerAttack, playerHealth);
+//console.log(playerName, playerAttack, playerHealth);
 
-var enemyName = "Roborto";
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
+console.log(enemyNames.length);
 var enemyHealth = 50;
 var enemyAttack = 12;
+//console.log(enemyNames.length)
+//for([initial expression];[condition];[increment expression]). i++ means i=i+1
 
-console.log(enemyName, enemyAttack,enemyHealth)
+//use length property to find out last robot's name
+//console.log(enemyNames[enemyNames.length -1])
 
-// fucntion expression -- creating a function by assigning it to a variable
-var fight = function() {
+
+// function expression -- creating a function by assigning it to a variable
+//"enemyName"here is teh arbitrarily named parameter that is used by the function. is not a reference to the previous enemyName variable. thiss enemyName is corresponding though to any "enemyName" that is being called in the function. 
+
+var fight = function(enemyName) {
+    //repeat and execute as long as the enemy-robot is alive need to modify to check on player's health as well.
+    while(enemyHealth > 0 && playerHealth > 0){
     // alert players that they are starting the battle
-    window.alert("Welcome to Robot Gladiators!");
+    // this alert will not be necessary at the beginning of each fight. so comment out for now...
+
+    // ask player if they'd like to fight or run
+    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+    console.log(promptFight);
+
+if (promptFight === "skip" || promptFight === "SKIP" || promptFight === "Skip" || promptFight === "S"  || promptFight === "s"){
+        //confirm player wants to skip
+        var confirmSkip = window.confirm( "Are you sure you'd like to quit?");
+        //if yes (true, leave fight)
+        if(confirmSkip) {
+            window.alert(playerName + "has decided to skip this fight. Goodbye");
+            //subtract money from playMoney for skipping
+            playerMoney = playerMoney - 10;
+            console.log("playerMoney", playerMoney);
+            break;
+        }
+    }
+//if player chooses to fight, then fight
+//if (promptFight === "fight" || promptFight === "FIGHT" || promptFight === "Fight" || promptFight === "f" ||promptFight ==="F") { -- setting fight as default option, unless asked to skip, fight...
 // subtract the value of 'playerAttack' from the value of 'enemyAttack' and use that result to update the value in the 'enemyHealth' variable.
 enemyHealth = enemyHealth - playerAttack;
 // log resulting message to the console so we know that it worked.
 console.log(
     playerName + " attacked " + enemyName + "." + enemyName + " now has " + enemyHealth + " health remaining. "
 );
+<<<<<<< HEAD
+=======
+//check enemy's health
+    if (enemyHealth <= 0){
+        window.alert(enemyName + " has died");
+        //award player money for winning
+        playerMoney=playerMoney+20;
+        //leave while() loop since enemy is dead
+        break;
+    } else {
+        window.alert(enemyName + " still has " + enemyHealth + " health left. ");
+    }
+>>>>>>> develop
 // subtract the value of 'enemyAttack' from the value of 'playerHealth' and use that that result to update the value in the 'playerHealth' variable.
 // log a resulting message to the console so we know that it worked. 
+<<<<<<< HEAD
+=======
+console.log(
+    enemyName + " attacked " + playerName + ". " +playerName + " now has " + playerHealth + " health remaining."
+);
+
+//check player's health
+    if(playerHealth <= 0){
+    window.alert("You have lost your robot in battle! Game Over! ");
+    break;
+    } else {
+        window.alert(playerName + " still has " + playerHealth + " health left.");
+    }
+// if player chooses to skip
+} 
+    //if no (false), ask question again by running fight () again
+   
+// if player did not choose 1 or 2 in prompt
+
+    
+>>>>>>> develop
 };
+var endGame = function () {
+    //if player is still alive, player wins!
+    if(playerHealth > 0){
+        window.alert("Great Job! You've survive the battle! You now have a score of " + playerMoney + ".");
+    }
+    else{
+        window.alert("You've lost your robot in battle. ");
+    }
+    //ask player if they'd like to play gain
+    var playAgainConfirm = window.confirm ("Would you like to play again?");
+  
+    if(playAgainConfirm){
+        //restart the game
+        startGame();
+    }
+    else{
+        window.alert("Thank you for playing Robot Gladiators! Come back soon!");
+    }
+  }
+
+//function to start a new game
+var startGame =function () {
+    //reset player stats
+    playerHealth = 100;
+    playerAttack = 10;
+    playerMoney=10;
+    for(var i = 0; i < enemyNames.length; i ++){
+        if(playerHealth >0) {
+            window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+        var pickedEnemyName = enemyNames[i];
+        enemyHealth = 50; 
+        fight(pickedEnemyName);
+        //console.log(enemyNames[i]);
+        //console.log(i);
+        //console.log(enemyNames[i] + " is at " + i + " index");
+        // concatenate the string showing apple1
+        //console.log("apple" + i);
+        //display each loop showing apple, 1
+    // console.log("apple", i );
+            }
+            else{
+                window.alert("You have lost your robot in battle! Game Over!");
+                break
+            }
+        }
+        //play again;
+        //startGame();
+        endGame();
+};
+//start the game when the page loads.
+startGame();
+
 // the function will not show until we call it 
-fight();
+//   fight();
+//function expression (better) var add =function(){} v.s. Declaration (function (){}).
