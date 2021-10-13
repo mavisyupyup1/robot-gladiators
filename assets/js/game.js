@@ -41,55 +41,7 @@ var randomNumber = function (min,max) {
     var value = Math.floor(Math.random() * (max - min + 1) + min) ;
     return value;
 }
-// prompt asks for user input
-// var is a variable that stores the user input (in the browser's memory)
-var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
-    health: 100,
-    attack: 10,
-    money:10,
-    reset: function () {
-        this.health = 100;
-        this.money = 10;
-        this.attack = 10;
-    },
-    refillHealth: function () {
-        if(this.money >= 7){
-            window.alert("Refilling player's health by 20 for 7 dollars.");
-            this.health += 20;
-            this.money -= 7;
-    }
-    else{
-        window.alert("You don't have enough money!");
-    }
-    },
-    upgradeAttack: function () {
-        if(this.money >= 7){
-        window.alert("Upgrading player's attack by 6 for 7 dollars.");
-        this.attack += 6;
-        this.money -=7;
-    }
-    else{
-        window.alert("You don't have enough money!");
-    }
-    }
-};
-// this creates a function named "fight". the keyword "function" declares it.
-//console.log(playerInfo.name, playerInfo.attack, playerInfo.health);
-var enemyInfo = [
-    {
-        name:"Roborto",
-        attack: randomNumber(10,14)
-    },
-    {
-        name: "Amy Android",
-        attack: randomNumber(10,14)
-    },
-    {
-        name: "Robo Trumble",
-        attack: randomNumber(10,14)
-    }
-];
+
 var fight = function(enemy) {
     console.log(enemy);
     //repeat and execute as long as the enemy-robot is alive need to modify to check on player's health as well.
@@ -144,7 +96,7 @@ console.log(
 
 //check player's health
     if(playerInfo.health <= 0){
-    window.alert("You have lost your robot in battle! Game Over! ");
+    window.alert(playerInfo.name + "has died!");
     break;
     } else {
         window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
@@ -232,7 +184,7 @@ var endGame = function () {
         case "R":
         case "r":
             playerInfo.refillHealth();
-             break;
+            break;
 
         case "upgrade":
         case "UPGRADE":
@@ -256,6 +208,58 @@ var endGame = function () {
      }
       
   };
-
+// prompt asks for user input
+// var is a variable that stores the user input (in the browser's memory)
+var playerInfo = {
+    name: window.prompt("What is your robot's name?"),
+    health: 100,
+    attack: 10,
+    money:10,
+    reset: function () {
+        this.health = 100;
+        this.money = 10;
+        this.attack = 10;
+    },
+    refillHealth: function () {
+        if(this.money >= 7){
+            window.alert("Refilling player's health by 20 for 7 dollars.");
+            this.health += 20;
+            this.money -= 7;
+    }
+    else{
+        window.alert("You don't have enough money!");
+    }
+    },
+    upgradeAttack: function () {
+        if(this.money >= 7){
+        window.alert("Upgrading player's attack by 6 for 7 dollars.");
+        this.attack += 6;
+        this.money -=7;
+    }
+    else{
+        window.alert("You don't have enough money!");
+    }
+    }
+};
+// this creates a function named "fight". the keyword "function" declares it.
+//console.log(playerInfo.name, playerInfo.attack, playerInfo.health);
+var enemyInfo = [
+    {
+        name:"Roborto",
+        attack: randomNumber(10,14)
+    },
+    {
+        name: "Amy Android",
+        attack: randomNumber(10,14)
+    },
+    {
+        name: "Robo Trumble",
+        attack: randomNumber(10,14)
+    }
+];
+console.log(enemyInfo);
+console.log(enemyInfo[0]);
+console.log(enemyInfo[0].name);
+console.log(enemyInfo[0]['attack']);
   //start first game when page loads
   startGame();
