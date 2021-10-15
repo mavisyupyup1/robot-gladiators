@@ -123,6 +123,7 @@ var startGame =function () {
     for(var i = 0; i < enemyInfo.length; i ++){
         if(playerInfo.health >0) {
             window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+            debugger;
         var pickedEnemyObj= enemyInfo[i];
         pickedEnemyObj.health = randomNumber(40,60);
         // console.log(enemy.names[i],"\'s Health:", enemy.health);
@@ -216,8 +217,21 @@ var endGame = function () {
   };
 // prompt asks for user input
 // var is a variable that stores the user input (in the browser's memory)
+//function to set name
+var getPlayerName = function () {
+    var name ="";
+    //****************************************
+    //ADD LOOP HERE WITH PROMPT AND CONDITION
+    //****************************************
+    //initialize var name="" before the while loop to guarantee entering the loop at least once
+    while (name === "" || name === null){
+        name = prompt("What is your robot's name?");
+    }
+    console.log("Your robot's name is" + name);
+    return name;
+}
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money:10,
@@ -225,6 +239,7 @@ var playerInfo = {
         this.health = 100;
         this.money = 10;
         this.attack = 10;
+        console.log(this);
     },
     refillHealth: function () {
         if(this.money >= 7){
