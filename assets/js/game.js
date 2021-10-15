@@ -41,6 +41,25 @@ var randomNumber = function (min,max) {
     var value = Math.floor(Math.random() * (max - min + 1) + min) ;
     return value;
 }
+var fightOrSkip = function () {
+    //ask player if they'd like to fight or skip using fightOrSkip function
+    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter \"FIGHT\"  or \"SKIP\" to choose.")
+    //Enter the conditional recursive function call here!
+
+    //if player picks "skip" confirm add then stop the loop
+    if(promptFight === "skip" ||promptFight ==="SKIP"){
+        //confirm player wants to skip
+        var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+
+        //if yes(true), leave fight
+        if(confirmSkip){
+            window.alert(playerInfo.name + "has decided to skip this fight. Goodbye!");
+            //subtract money from playMoney for skipping
+            playerInfo.playerMoney = playerInfo.money -10;
+            shop();
+        }
+    }
+}
 
 var fight = function(enemy) {
     console.log(enemy);
