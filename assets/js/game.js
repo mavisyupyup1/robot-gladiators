@@ -43,7 +43,7 @@ var randomNumber = function (min,max) {
 }
 var fightOrSkip = function () {
     //ask player if they'd like to fight or skip using fightOrSkip function
-    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter \"FIGHT\"  or \"SKIP\" to choose.")
+    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter \"skip\" to skip or any other key to fight.")
     //Enter the conditional recursive function call here!
     //Conditional Recursive function call
     if(!promptFight){
@@ -195,32 +195,23 @@ var endGame = function () {
   var shop = function (params) {
      // ask player what they'd like to do
      var shopOptionPrompt = window.prompt(
-         "Would you liek to REFILL your health, UPGRADE your attack or Leave the store? Please enter one : \'REFILL\', \'UPGRADE\', or \'LEAVE\' to make a choice."
+         "Would you liek to REFILL your health, UPGRADE your attack or Leave the store? Please enter 1 for \'REFILL\', 2 for \'UPGRADE\', or 3 for \'LEAVE\'."
      );
+     shopOptionPrompt = parseInt(shopOptionPrompt);
      switch(shopOptionPrompt){
-        case "refill":
-        case  "REFILL": //new case
-        case "R":
-        case "r":
+        case 1:
             playerInfo.refillHealth();
             break;
 
-        case "upgrade":
-        case "UPGRADE":
-        case "U":
-        case "u":
+        case 2:
             playerInfo.upgradeAttack();
             break;
-        case "leave" :
-        case "LEAVE" :
-        case "L":
-        case "l":
+        case 3:
             window.alert("Leaving the store.");
             // do nothing so the function will end
             break;
         default: 
             window.alert("You did not pick a valid option. Try again.");
-
             //call shop() again to force player to pick a valid option
             shop();
             break;
@@ -239,7 +230,7 @@ var getPlayerName = function () {
     while (name === "" || name === null){
         name = prompt("What is your robot's name?");
     }
-    console.log("Your robot's name is" + name);
+    console.log("Your robot's name is " + name);
     return name;
 }
 var playerInfo = {
