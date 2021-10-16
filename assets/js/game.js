@@ -69,18 +69,18 @@ var fightOrSkip = function () {
 }
 
 var fight = function(enemy) {
+    //keep track of who goes first
+    var isPlayerTurn = true;
+    if(Math.random()>0.5){
+        isPlayerTurn =false;
+    }
     console.log(enemy);
-    //repeat and execute as long as the enemy-robot is alive need to modify to check on player's health as well.
     while(enemy.health > 0 && playerInfo.health > 0){
-   //ask the player if they'd like to fight or skip using fightOrSkip 
+        if(isPlayerTurn){
    if(fightOrSkip()){
-       //if true leave fight by breaking loop
        break;
    }
 
-//if player chooses to fight, then fight
-//if (promptFight === "fight" || promptFight === "FIGHT" || promptFight === "Fight" || promptFight === "f" ||promptFight ==="F") { -- setting fight as default option, unless asked to skip, fight...
-// subtract the value of  playerInfo.attack' from the value of 'enemyAttack' and use that result to update the value in the 'enemy.health' variable.
 var damage = randomNumber (playerInfo.attack - 3, playerInfo.attack);
 enemy.health = Math.max(0,enemy.health - damage);
 console.log("damage and enemy.health :", damage,enemy.health)
@@ -99,10 +99,10 @@ console.log(
     } else {
         window.alert(enemy.name + " still has " + enemy.health + " health left. ");
     }
+    }
+    //player gets attacked first
+    else{
 
-// subtract the value of 'enemyAttack' from the value of 'playerHealth' and use that that result to update the value in the 'playerHealth' variable.
-
-// subtract the value of 'enemyAttack' from the value of 'playerInfo.health' and use that that result to update the value in the 'playerInfo.health' variable.
 var damage = randomNumber(enemy.attack - 3, enemy.attack);
 playerInfo.health= Math.max(0,playerInfo.health - damage);
 console.log("enemy damage and playerInfo.health", damage,playerInfo.health)
@@ -120,12 +120,11 @@ console.log(
     } else {
         window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
     }
-// if player chooses to skip
+    }
+    //switch turn order for next round
+    isPlayerTurn =!isPlayerTurn;
 } 
-    //if no (false), ask question again by running fight () again
-   
-// if player did not choose 1 or 2 in prompt
-
+    
     
 };
 
